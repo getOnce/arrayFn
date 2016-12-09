@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组去重</title>
+</head>
+<body>
+	<script>
+	var arr = [1, 2, 1, 1, 2, 3, 4, 11, 11, 23, 2323, 23, 23];
+
+	function unique(arr) {
+		var u = arr.filter(function(item, index, array){
+			return !~array.indexOf(item, index + 1);
+		});
+		return u;
+	}
+	console.log(unique(arr));
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>取得数组里面出现次数最多的元素及数量</title>
+</head>
+<body>
+	<script>
+	/**
+	*取得最多元素级数量fn1
+	*/
+	var arr = [1, 2, 1, 1, 2, 3, 4, 11, 11, 23, 2323, 23, 23];
+	function getPopular(arr){
+		var arr = arr.sort(),
+			temp = [],
+			numbers = [],
+			map = {}
+		arr.forEach(function(item, index, array){
+			if(!~temp.indexOf(item)){
+				temp.push(item);
+				var num = array.lastIndexOf(item) - array.indexOf(item) + 1;
+				numbers.push(num);
+				if(map[num]){
+					map[num].push(item);
+				}else{
+					map[num] = [item];
+				}
+			}
+		})
+		var max = Math.max(...numbers);
+
+		return {
+			max: max,
+			value: map[max]
+		}
+	}
+	console.log(getPopular(arr));
+	/**
+	*取得最多元素级数量fn1
+	*/	
+	function getPopular_2(arr){
+		var temp = [],
+			max = 0,
+			map = {}
+		arr.forEach(function(item, index, array){
+			if(map[item]){
+				map[item]++
+			}else{
+				map[item] = 1;
+			}
+			if(max < map[item]){
+				max = map[item];
+				temp = [item]
+			}else if(max == map[item]){
+				temp.push(item)
+			}
+		});
+		return {
+			max: max,
+			temp: temp
+		}
+	}
+	console.log(getPopular_2(arr));
+	</script>
+
+
+
+
+
+
+
+</body>
+</html>
+
+
